@@ -1,0 +1,355 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misi Menjemput Takdir Terbaik - Game Edukasi PAI Ma'had Al Bayyinah</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dusty: {
+                            50: '#FAF4F5',
+                            100: '#F5E8EA',
+                            200: '#E8D0D5',
+                            300: '#D8A7B1',
+                            400: '#C78593',
+                            500: '#B86B7C',
+                            600: '#A15062',
+                        },
+                        mauve: {
+                            100: '#F2ECEE',
+                            300: '#D5C4CB',
+                            500: '#B28D9B',
+                            700: '#7E5B6A',
+                            900: '#4A323D',
+                        },
+                        cream: {
+                            100: '#FFFDF9',
+                            200: '#FFF9F0',
+                            300: '#FDF0DF',
+                            400: '#F5EBE0',
+                        },
+                        gold: {
+                            300: '#F4E0A5',
+                            400: '#E6CA75',
+                            500: '#D4AF37',
+                            600: '#B89220',
+                            700: '#8C6C10',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        arabic: ['Amiri', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Styles & CSS Animations */
+        body {
+            background-color: #FAF4F5;
+            color: #2C3E50;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-image: radial-gradient(#D8A7B1 0.75px, transparent 0.75px), radial-gradient(#D8A7B1 0.75px, #FAF4F5 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            direction: rtl;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(216, 167, 177, 0.3);
+            box-shadow: 0 10px 30px -5px rgba(178, 141, 155, 0.15);
+        }
+
+        .gold-glow {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #B86B7C 0%, #B28D9B 100%);
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(184, 107, 124, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(184, 107, 124, 0.4);
+            background: linear-gradient(135deg, #A15062 0%, #A07887 100%);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #D4AF37 0%, #C5A059 100%);
+            color: #4A323D;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+            background: linear-gradient(135deg, #E6CA75 0%, #D4AF37 100%);
+        }
+
+        /* Modal Overlay */
+        .modal-bg {
+            background: rgba(74, 50, 61, 0.6);
+            backdrop-filter: blur(4px);
+        }
+
+        /* Print Style Sheet for Certificates */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-only {
+                display: block !important;
+            }
+            .glass-card {
+                border: 2px solid #D4AF37 !important;
+                box-shadow: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-dusty-300 selection:text-white">
+
+    <!-- Top Navigation Header -->
+    <header class="w-full bg-white/80 backdrop-blur-md border-b border-dusty-200 sticky top-0 z-40 no-print">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-dusty-100 border border-dusty-300 flex items-center justify-center text-dusty-600 font-bold">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <div>
+                    <h1 class="text-sm md:text-base font-bold text-mauve-900 leading-tight">MA'HAD AL BAYYINAH</h1>
+                    <p class="text-xs text-dusty-600 font-medium">Misi Menjemput Takdir Terbaik</p>
+                </div>
+            </div>
+
+            <!-- Stats Bar (Visible when game starts) -->
+            <div id="topStatsBar" class="hidden flex items-center gap-4 text-xs md:text-sm font-semibold">
+                <div class="bg-cream-200 border border-gold-300 px-3 py-1.5 rounded-full flex items-center gap-1.5 text-mauve-900">
+                    <span class="text-gold-600">⭐</span>
+                    <span id="statPoints">0 Poin</span>
+                </div>
+                <div class="bg-dusty-100 border border-dusty-300 px-3 py-1.5 rounded-full text-dusty-600 hidden sm:block">
+                    Ukhti: <span id="statPlayerName" class="text-mauve-900 font-bold">-</span>
+                </div>
+                <button id="btnSoundToggle" onclick="toggleAudio()" class="p-2 rounded-full bg-cream-200 text-mauve-700 hover:bg-dusty-200 transition" title="Suara On/Off">
+                    🔊
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-5xl w-full mx-auto p-4 md:p-6 my-4">
+
+        <!-- SCREEN 1: REGISTRATION & WELCOME -->
+        <section id="screenRegister" class="glass-card rounded-3xl p-6 md:p-10 text-center relative overflow-hidden transition-all">
+            <!-- Decorative Islamic Pattern SVG -->
+            <div class="absolute -top-12 -right-12 w-40 h-40 opacity-10 text-mauve-900 pointer-events-none">
+                <svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 0 L60 35 L95 35 L67 57 L77 91 L50 70 L23 91 L33 57 L5 35 L40 35 Z"/></svg>
+            </div>
+
+            <div class="max-w-2xl mx-auto space-y-6">
+                <!-- Mascot Avatar: Ummi Masroh -->
+                <div class="relative w-28 h-28 mx-auto">
+                    <div class="w-28 h-28 rounded-full bg-mauve-100 border-4 border-gold-400 overflow-hidden shadow-lg flex items-center justify-center">
+                        <!-- SVG Avatar Ummi Masroh (Syar'i with Niqab) -->
+                        <svg viewBox="0 0 120 120" class="w-full h-full">
+                            <!-- Background -->
+                            <circle cx="60" cy="60" r="60" fill="#F5E8EA"/>
+                            <!-- Hijab Wide -->
+                            <path d="M 20 120 Q 20 40 60 25 Q 100 40 100 120 Z" fill="#4A323D"/>
+                            <!-- Niqab & Face Shield Area -->
+                            <path d="M 40 45 Q 60 40 80 45 Q 85 70 60 72 Q 35 70 40 45 Z" fill="#2C3E50"/>
+                            <!-- Eyes Area (Sober, Friendly expression) -->
+                            <ellipse cx="48" cy="52" rx="4" ry="2.5" fill="#FFF"/>
+                            <ellipse cx="72" cy="52" rx="4" ry="2.5" fill="#FFF"/>
+                            <circle cx="48" cy="52" r="1.8" fill="#2C3E50"/>
+                            <circle cx="72" cy="52" r="1.8" fill="#2C3E50"/>
+                            <!-- Eyebrows -->
+                            <path d="M 42 47 Q 48 45 54 48" stroke="#FFF" stroke-width="1.5" fill="none"/>
+                            <path d="M 66 48 Q 72 45 78 47" stroke="#FFF" stroke-width="1.5" fill="none"/>
+                            <!-- Niqab Veil Overlay -->
+                            <path d="M 38 58 Q 60 62 82 58 L 85 120 L 35 120 Z" fill="#1A252F"/>
+                            <!-- Veil Accents -->
+                            <path d="M 40 68 Q 60 73 80 68" stroke="#D4AF37" stroke-width="1" fill="none"/>
+                        </svg>
+                    </div>
+                    <span class="absolute bottom-0 right-0 bg-gold-500 text-xs text-mauve-900 font-bold px-2 py-0.5 rounded-full border border-white shadow">Pemandu</span>
+                </div>
+
+                <div>
+                    <span class="text-xs font-bold tracking-widest uppercase px-3 py-1 bg-dusty-100 text-dusty-600 rounded-full">Game Pembelajaran PAI SMA</span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-mauve-900 mt-2">MISI MENJEMPUT TAKDIR TERBAIK</h2>
+                    <p class="text-sm md:text-base text-mauve-700 italic mt-1">"Mengenal Amalan yang Menjadi Sebab Datangnya Kebaikan dengan Izin Allah"</p>
+                </div>
+
+                <!-- Registration Form -->
+                <div class="bg-white p-6 rounded-2xl border border-dusty-200 text-left space-y-4 shadow-sm max-w-md mx-auto">
+                    <h3 class="font-bold text-mauve-900 border-b pb-2 text-center">Identitas Santriwati</h3>
+                    
+                    <div>
+                        <label class="block text-xs font-semibold text-mauve-700 mb-1">Nama Lengkap Santriwati <span class="text-red-500">*</span></label>
+                        <input type="text" id="inputPlayerName" placeholder="Masukkan nama lengkap anti..." class="w-full px-4 py-2.5 rounded-xl border border-dusty-300 focus:outline-none focus:ring-2 focus:ring-dusty-400 text-sm">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-mauve-700 mb-1">Kelas <span class="text-red-500">*</span></label>
+                        <select id="inputPlayerClass" class="w-full px-4 py-2.5 rounded-xl border border-dusty-300 focus:outline-none focus:ring-2 focus:ring-dusty-400 text-sm">
+                            <option value="">-- Pilih Kelas --</option>
+                            <option value="X / 10">Kelas X (10)</option>
+                            <option value="XI / 11">Kelas XI (11)</option>
+                            <option value="XII / 12">Kelas XII (12)</option>
+                        </select>
+                    </div>
+
+                    <div id="regErrorMsg" class="hidden text-xs text-red-600 bg-red-50 p-2.5 rounded-lg border border-red-200 text-center font-medium">
+                        Mohon lengkapi Nama Lengkap dan Kelas terlebih dahulu!
+                    </div>
+
+                    <button onclick="submitRegistration()" class="w-full btn-primary font-bold py-3 px-6 rounded-xl text-base flex items-center justify-center gap-2">
+                        <span>MULAI PETUALANGAN</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </button>
+                </div>
+
+                <div class="text-xs text-dusty-600 italic">
+                    Ditujukan khusus untuk Santriwati SMA Ma'had Al Bayyinah
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: ADVENTURE MAP (LEVEL & POS SELECTION) -->
+        <section id="screenMap" class="hidden space-y-6">
+            <!-- Greeting Banner -->
+            <div class="glass-card rounded-2xl p-5 flex flex-col md:flex-row items-center gap-4 border-l-4 border-l-gold-500">
+                <div class="w-16 h-16 rounded-full bg-mauve-100 border-2 border-gold-400 overflow-hidden shrink-0">
+                    <svg viewBox="0 0 120 120" class="w-full h-full">
+                        <circle cx="60" cy="60" r="60" fill="#F5E8EA"/>
+                        <path d="M 20 120 Q 20 40 60 25 Q 100 40 100 120 Z" fill="#4A323D"/>
+                        <path d="M 40 45 Q 60 40 80 45 Q 85 70 60 72 Q 35 70 40 45 Z" fill="#2C3E50"/>
+                        <ellipse cx="48" cy="52" rx="4" ry="2.5" fill="#FFF"/>
+                        <ellipse cx="72" cy="52" rx="4" ry="2.5" fill="#FFF"/>
+                        <circle cx="48" cy="52" r="1.8" fill="#2C3E50"/>
+                        <circle cx="72" cy="52" r="1.8" fill="#2C3E50"/>
+                        <path d="M 38 58 Q 60 62 82 58 L 85 120 L 35 120 Z" fill="#1A252F"/>
+                    </svg>
+                </div>
+                <div class="space-y-1 text-center md:text-left">
+                    <h3 class="font-bold text-mauve-900 text-lg">Pesan Ummi Masroh:</h3>
+                    <p id="welcomeGreetingText" class="text-sm text-mauve-800 leading-relaxed"></p>
+                </div>
+            </div>
+
+            <!-- Levels & Guard Posts Tree -->
+            <div class="space-y-6">
+                
+                <!-- LEVEL 1 CARD -->
+                <div class="glass-card rounded-2xl p-6 relative overflow-hidden border-t-4 border-t-dusty-400">
+                    <div class="flex flex-col md:flex-row justify-between md:items-center gap-2 mb-4 border-b pb-3">
+                        <div>
+                            <span class="text-xs font-bold text-dusty-600 tracking-wider uppercase">LEVEL 1</span>
+                            <h3 class="text-xl font-bold text-mauve-900">Gerbang Ikhtiar</h3>
+                            <p class="text-xs text-mauve-700">Tema: Memahami Takdir dan Kekuatan Doa</p>
+                        </div>
+                        <span id="badgeL1" class="self-start md:self-auto text-xs px-3 py-1 rounded-full font-bold bg-cream-200 text-gold-700 border border-gold-300">
+                            Aktif
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Pos 1 Button -->
+                        <div id="cardPos1" onclick="openPost(1)" class="bg-white p-4 rounded-xl border-2 border-dusty-300 hover:border-dusty-500 cursor-pointer transition flex items-center justify-between shadow-sm">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-dusty-100 text-dusty-600 font-bold flex items-center justify-center">1</div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-mauve-900">Pos 1: Penjaga Gerbang Takdir</h4>
+                                    <p class="text-xs text-mauve-600">3 Soal • QS. Al-Qamar: 49</p>
+                                </div>
+                            </div>
+                            <span id="statusPos1" class="text-xs font-bold text-dusty-500">Mulai</span>
+                        </div>
+
+                        <!-- Pos 2 Button -->
+                        <div id="cardPos2" onclick="openPost(2)" class="bg-white opacity-60 p-4 rounded-xl border-2 border-gray-200 cursor-not-allowed transition flex items-center justify-between shadow-sm">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-100 text-gray-400 font-bold flex items-center justify-center">2</div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-mauve-900">Pos 2: Penjaga Pintu Doa</h4>
+                                    <p class="text-xs text-mauve-600">4 Soal • QS. Al-Baqarah: 186</p>
+                                </div>
+                            </div>
+                            <span id="statusPos2" class="text-xs font-bold text-gray-400">Terkunci 🔒</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LEVEL 2 CARD -->
+                <div class="glass-card rounded-2xl p-6 relative overflow-hidden border-t-4 border-t-mauve-500">
+                    <div class="flex flex-col md:flex-row justify-between md:items-center gap-2 mb-4 border-b pb-3">
+                        <div>
+                            <span class="text-xs font-bold text-mauve-700 tracking-wider uppercase">LEVEL 2</span>
+                            <h3 class="text-xl font-bold text-mauve-900">Gerbang Amal Saleh</h3>
+                            <p class="text-xs text-mauve-700">Tema: Tiga Amalan yang Menjadi Sebab Kebaikan</p>
+                        </div>
+                        <span id="badgeL2" class="self-start md:self-auto text-xs px-3 py-1 rounded-full font-bold bg-gray-100 text-gray-500 border border-gray-200">
+                            Terkunci 🔒
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Pos 3 -->
+                        <div id="cardPos3" onclick="openPost(3)" class="bg-white opacity-60 p-4 rounded-xl border-2 border-gray-200 cursor-not-allowed transition flex items-center justify-between shadow-sm">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-100 text-gray-400 font-bold flex items-center justify-center">3</div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-mauve-900">Pos 3: Silaturahmi</h4>
+                                    <p class="text-xs text-mauve-600">4 Soal • HR. Bukhari</p>
+                                </div>
+                            </div>
+                            <span id="statusPos3" class="text-xs font-bold text-gray-400">🔒</span>
+                        </div>
+
+                        <!-- Pos 4 -->
+                        <div id="cardPos4" onclick="openPost(4)" class="bg-white opacity-60 p-4 rounded-xl border-2 border-gray-200 cursor-not-allowed transition flex items-center justify-between shadow-sm">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-100 text-gray-400 font-bold flex items-center justify-center">4</div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-mauve-900">Pos 4: Sedekah</h4>
+                                    <p class="text-xs text-mauve-600">3 Soal • QS. Al-Baqarah</p>
+                                </div>
+                            </div>
+                            <span id="statusPos4" class="text-xs font-bold text-gray-400">🔒</span>
+                        </div>
+
+                        <!-- Pos 5 -->
+                        <div id="cardPos5" onclick="openPost(5)" class="bg-white opacity-60 p-4 rounded-xl border-2 border-gray-200 cursor-not-allowed transition flex items-center justify-between shadow-sm">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-100 text-gray-400 font-bold flex items-center justify-center">5</div>
+                                <div>
+                             
